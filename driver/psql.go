@@ -638,7 +638,7 @@ func (p PostgresDriver) Imports() (importers.Collection, error) {
 	}
 	col.Test = importers.Set{
 		ThirdParty: importers.List{
-			`"github.com/volatiletech/null/v8"`
+			`"github.com/volatiletech/null/v8"`,
 		},
 	}
 	col.Singleton = importers.Map{
