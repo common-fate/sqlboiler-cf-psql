@@ -25,7 +25,7 @@ func test{{$ltable.UpSingular}}ToOne{{$ftable.UpSingular}}Using{{$rel.Foreign}}(
 	}
 
 
-	{{- $col := (getTable $.Tables $fkey.ForeignTable).GetColumn $colField -}}
+	{{- $col := (getTable $.Tables $fkey.ForeignTable).GetColumn $fkey.ForeignColumn -}}
 	{{- if eq  $col.FullDBType "character(31)" -}}
 	// override the ID to match Common Fate's ID format
 	foreign.{{$fcolField}} = testCFID()
