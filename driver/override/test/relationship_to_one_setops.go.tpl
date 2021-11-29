@@ -31,14 +31,14 @@ func test{{$ltable.UpSingular}}ToOneSetOp{{$ftable.UpSingular}}Using{{$rel.Forei
 	{{- $col := (getTable $.Tables $fkey.Table).GetColumn $fkey.Column -}}
 	{{if eq  $col.FullDBType "character(31)"}}
 	// override the ID to match Common Fate's ID format
-	a.{{$colField}} = testCFID()
+	a.{{$colField}} = {{if $col.Nullable}}null.StringFrom(testCFID()){{else}}testCFID(){{end}}
 	{{end}}
 
 	{{- $fcol := (getTable $.Tables $fkey.ForeignTable).GetColumn $fkey.ForeignColumn -}}
 	{{if eq  $fcol.FullDBType "character(31)"}}
 	// override the ID to match Common Fate's ID format
-	b.{{$fcolField}} = testCFID()
-	c.{{$fcolField}} = testCFID()
+	b.{{$fcolField}} = {{if $fcol.Nullable}}null.StringFrom(testCFID()){{else}}testCFID(){{end}}
+	c.{{$fcolField}} = {{if $fcol.Nullable}}null.StringFrom(testCFID()){{else}}testCFID(){{end}}
 	{{end}}
 
 
