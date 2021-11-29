@@ -26,25 +26,25 @@ func init() {
 func (p *pgTester) setup() error {
 	var err error
 
-	viper.SetDefault("psql.schema", "public")
-	viper.SetDefault("psql.port", 5432)
-	viper.SetDefault("psql.sslmode", "require")
+	viper.SetDefault("cf-psql.schema", "public")
+	viper.SetDefault("cf-psql.port", 5432)
+	viper.SetDefault("cf-psql.sslmode", "require")
 
-	p.dbName = viper.GetString("psql.dbname")
-	p.host = viper.GetString("psql.host")
-	p.user = viper.GetString("psql.user")
-	p.pass = viper.GetString("psql.pass")
-	p.port = viper.GetInt("psql.port")
-	p.sslmode = viper.GetString("psql.sslmode")
-	p.testDBName = viper.GetString("psql.testdbname")
-	p.skipSQLCmd = viper.GetBool("psql.skipsqlcmd")
+	p.dbName = viper.GetString("cf-psql.dbname")
+	p.host = viper.GetString("cf-psql.host")
+	p.user = viper.GetString("cf-psql.user")
+	p.pass = viper.GetString("cf-psql.pass")
+	p.port = viper.GetInt("cf-psql.port")
+	p.sslmode = viper.GetString("cf-psql.sslmode")
+	p.testDBName = viper.GetString("cf-psql.testdbname")
+	p.skipSQLCmd = viper.GetBool("cf-psql.skipsqlcmd")
 
 	err = vala.BeginValidation().Validate(
-		vala.StringNotEmpty(p.user, "psql.user"),
-		vala.StringNotEmpty(p.host, "psql.host"),
-		vala.Not(vala.Equals(p.port, 0, "psql.port")),
-		vala.StringNotEmpty(p.dbName, "psql.dbname"),
-		vala.StringNotEmpty(p.sslmode, "psql.sslmode"),
+		vala.StringNotEmpty(p.user, "cf-psql.user"),
+		vala.StringNotEmpty(p.host, "cf-psql.host"),
+		vala.Not(vala.Equals(p.port, 0, "cf-psql.port")),
+		vala.StringNotEmpty(p.dbName, "cf-psql.dbname"),
+		vala.StringNotEmpty(p.sslmode, "cf-psql.sslmode"),
 	).Check()
 
 	if err != nil {
