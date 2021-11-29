@@ -676,6 +676,9 @@ func (p PostgresDriver) Imports() (importers.Collection, error) {
 			},
 		},
 		"cfid_generator": {
+			Standard: importers.List{
+				`"fmt"`,
+			},
 			ThirdParty: importers.List{
 				`"github.com/segmentio/ksuid"`,
 			},
