@@ -24,7 +24,7 @@ func test{{$ltable.UpSingular}}ToOne{{$ftable.UpSingular}}Using{{$rel.Foreign}}(
 		t.Errorf("Unable to randomize {{$ftable.UpSingular}} struct: %s", err)
 	}
 
-	{{- $col := .Table.GetColumn $fcolField -}}
+	{{- $col := $.Table.GetColumn $fcolField -}}
 	{{- if eq  $col.FullDBType "character(31)" -}}
 	// override the ID to match Common Fate's ID format
 	foreign.{{$fcolField}} = testCFID()
