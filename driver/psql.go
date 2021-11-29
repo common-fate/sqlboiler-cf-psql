@@ -675,6 +675,11 @@ func (p PostgresDriver) Imports() (importers.Collection, error) {
 				`_ "github.com/lib/pq"`,
 			},
 		},
+		"cfid_generator": {
+			ThirdParty: importers.List{
+				`"github.com/segmentio/ksuid"`,
+			},
+		},
 	}
 	col.BasedOnType = importers.Map{
 		"null.Float32": {
