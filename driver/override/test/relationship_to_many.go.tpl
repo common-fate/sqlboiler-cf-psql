@@ -23,6 +23,12 @@ func test{{$ltable.UpSingular}}ToMany{{$relAlias.Local}}(t *testing.T) {
 		t.Errorf("Unable to randomize {{$ltable.UpSingular}} struct: %s", err)
 	}
 
+	{{- $col := (getTable $.Tables $rel.Table).GetColumn $rel.Column -}}
+	{{if eq  $col.FullDBType "character(31)"}}
+	// override the ID to match Common Fate's ID format
+	a.{{$colField}} = testCFID()
+	{{end}}
+
 	if err := a.Insert({{if not $.NoContext}}ctx, {{end -}} tx, boil.Infer()); err != nil {
 		t.Fatal(err)
 	}
