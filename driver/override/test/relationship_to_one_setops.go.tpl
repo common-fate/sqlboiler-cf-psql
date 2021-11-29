@@ -28,6 +28,20 @@ func test{{$ltable.UpSingular}}ToOneSetOp{{$ftable.UpSingular}}Using{{$rel.Forei
 		t.Fatal(err)
 	}
 
+	{{- $col := (getTable $.Tables $fkey.Table).GetColumn $fkey.Column -}}
+	{{if eq  $col.FullDBType "character(31)"}}
+	// override the ID to match Common Fate's ID format
+	a.{{$colField}} = testCFID()
+	{{end}}
+
+	{{- $fcol := (getTable $.Tables $fkey.ForeignTable).GetColumn $fkey.ForeignColumn -}}
+	{{if eq  $fcol.FullDBType "character(31)"}}
+	// override the ID to match Common Fate's ID format
+	b.{{$fcolField}} = testCFID()
+	c.{{$fcolField}} = testCFID()
+	{{end}}
+
+
 	if err := a.Insert({{if not $.NoContext}}ctx, {{end -}} tx, boil.Infer()); err != nil {
 		t.Fatal(err)
 	}
