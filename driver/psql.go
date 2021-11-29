@@ -636,11 +636,6 @@ func (p PostgresDriver) Imports() (importers.Collection, error) {
 			`"strconv"`,
 		},
 	}
-	col.Test = importers.Set{
-		ThirdParty: importers.List{
-			`"github.com/volatiletech/null/v8"`,
-		},
-	}
 	col.Singleton = importers.Map{
 		"psql_upsert": {
 			Standard: importers.List{
@@ -686,6 +681,7 @@ func (p PostgresDriver) Imports() (importers.Collection, error) {
 			},
 			ThirdParty: importers.List{
 				`"github.com/segmentio/ksuid"`,
+				`"github.com/volatiletech/null/v8"`,
 			},
 		},
 	}
