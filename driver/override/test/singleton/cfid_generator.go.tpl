@@ -7,7 +7,6 @@ func testCFID() string {
 
 // testCFIDNull returns a nullable Common Fate ID
 // used in SQLBoiler tests
-// test override
 func testCFIDNull() null.String {
 	id := fmt.Sprintf("tes_%s", ksuid.New())
 	return null.StringFrom(id)
