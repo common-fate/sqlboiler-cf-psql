@@ -29,6 +29,7 @@ func test{{$ltable.UpSingular}}OneToOneSetOp{{$ftable.UpSingular}}Using{{$relAli
 	if err = randomize.Struct(seed, &c, {{$ftable.DownSingular}}DBTypes, false, strmangle.SetComplement({{$ftable.DownSingular}}PrimaryKeyColumns, {{$ftable.DownSingular}}ColumnsWithoutDefault)...); err != nil {
 		t.Fatal(err)
 	}
+	// test override
 
 	{{- $col := (getTable $.Tables $rel.Table).GetColumn $rel.Column -}}
 	{{if eq  $col.FullDBType "character(31)"}}
