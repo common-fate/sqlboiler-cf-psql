@@ -6,7 +6,7 @@ func testCFID() string {
 }
 
 // testCFIDNull returns a nullable Common Fate ID
-// used in SQLBoiler tests
+// used in SQLBoiler tests in the format PREFIX_KSUID.
 func testCFIDNull() null.String {
 	id := fmt.Sprintf("tes_%s", ksuid.New())
 	return null.StringFrom(id)
